@@ -30,6 +30,11 @@ public class LoginPage {
         // verification that we logged
     }
 
+    @FindBy(xpath = "//span[normalize-space(text())='Fleet']")
+    public WebElement fleetMenu;
+
+    @FindBy(xpath = "//span[.='Vehicles']")
+    public WebElement vehiclesMenu;
 
 
 

@@ -3,9 +3,14 @@ package com.cydeo.step_definitions;
 import com.cydeo.pages.LoginPage;
 import com.cydeo.utilities.ConfigurationReader;
 import com.cydeo.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import org.openqa.selenium.interactions.Actions;
 
 public class Login_StepDefinitions {
+
+    LoginPage loginPage = new LoginPage();
 
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() {
@@ -36,10 +41,13 @@ public class Login_StepDefinitions {
 
 
 
+    @Then("the user hover over fleet and click on vehicles")
+    public void theUserHoverOverFleetAndClickOnVehicles() {
 
-
-
-
+        Actions hover = new Actions(Driver.getDriver());
+        hover.moveToElement(loginPage.fleetMenu).perform();
+        loginPage.vehiclesMenu.click();
+    }
 
 
 
