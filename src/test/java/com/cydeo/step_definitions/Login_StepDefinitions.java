@@ -6,7 +6,12 @@ import com.cydeo.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class Login_StepDefinitions {
 
@@ -40,14 +45,6 @@ public class Login_StepDefinitions {
 
 
 
-
-    @Then("the user hover over fleet and click on vehicles")
-    public void theUserHoverOverFleetAndClickOnVehicles() {
-
-        Actions hover = new Actions(Driver.getDriver());
-        hover.moveToElement(loginPage.fleetMenu).perform();
-        loginPage.vehiclesMenu.click();
-    }
 
 
 
