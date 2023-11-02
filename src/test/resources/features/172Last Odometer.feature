@@ -16,3 +16,20 @@ Feature: As a user, I should be able to use "Last Odometer" filter under 'Fleet-
       | driver        |
       | sales manager |
       | store manager |
+
+  @lastOdometerFilter
+  Scenario: Verify "Last Odometer" filter methods
+    Given the user is on the 'Fleet-Vehicles' page
+    When the user selects the "Last Odometer" filter
+    Then the user should see the following filter methods:
+      | Method                |
+      | Between               |
+      | Not Between           |
+      | Equals                |
+      | Not Equals            |
+      | More Than             |
+      | Less Than             |
+      | Equals or More Than   |
+      | Equals or Less Than   |
+      | Is Empty              |
+      | Is Not Empty          |
