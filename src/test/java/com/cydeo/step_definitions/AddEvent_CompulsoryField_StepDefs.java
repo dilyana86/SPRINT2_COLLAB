@@ -7,11 +7,14 @@ import com.cydeo.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddEvent_CompulsoryField_StepDefs  extends AddEvent_CompulsoryPage{
 
@@ -44,7 +47,6 @@ public class AddEvent_CompulsoryField_StepDefs  extends AddEvent_CompulsoryPage{
 
     @Then("{string} can click Add Event button, but driver can NOT see Add Event button")
     public void can_click_add_event_button_but_driver_can_not_see_add_event_button(String user) {
-        BrowserUtils.sleep(3);
         if (user.equals("sales manager") || user.equals("store manager")){
             Assert.assertTrue(addEventButton.isDisplayed());
         }
@@ -54,5 +56,32 @@ public class AddEvent_CompulsoryField_StepDefs  extends AddEvent_CompulsoryPage{
         }
 
     }
+
+    @When("{string} can click Add Event button")
+    public void can_click_add_event_button(String user) {
+        if (user.equals("sales manager") || user.equals("store manager")){
+           addEventButton.click();
+        }
+    }
+    @Then("Add Event page should pop up")
+    public void add_event_page_should_pop_up() {
+     addEventPopup.isDisplayed();
+    }
+
+    @Then("Compulsory fields are shown as below Compulsory fields are shown as below:")
+    public void compulsory_fields_are_shown_as_below_compulsory_fields_are_shown_as_below(List<String> expectedRequiredFields) {
+
+        BrowserUtils.sleep(3);
+       List<String>  actualRequiredFields = new ArrayList<>();
+
+        for (WebElement each : addEventPopupRequiredFields) {
+            actualRequiredFields.add(each.getText().replace("*",""));
+        }
+
+
+        Assert.assertEquals(expectedRequiredFields, actualRequiredFields);
+    }
+
+
 
 }
