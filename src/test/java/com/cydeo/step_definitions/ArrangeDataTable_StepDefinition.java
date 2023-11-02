@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,7 +23,22 @@ public class ArrangeDataTable_StepDefinition {
 
     @When("the user clicks on the gear icon")
     public void the_user_clicks_on_the_gear_icon() {
-        arrangeDataTablePage.gridSettingsBtn.click();
+        int maxAttempts = 3;
+        int attempts = 0;
+        while (attempts < maxAttempts) {
+            try {
+                arrangeDataTablePage.gridSettingsBtn.click();
+                break;
+            } catch (StaleElementReferenceException e) {
+                // Handle the stale element exception, wait and retry
+                attempts++;
+                try {
+                    Thread.sleep(1000); // Wait for 1 second before retrying
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
     }
 
     @Then("Grid Settings should be visible")
@@ -32,7 +48,7 @@ public class ArrangeDataTable_StepDefinition {
 
     @Then("the column names in grid settings should be displayed as follows:")
     public void the_column_names_in_grid_settings_should_be_displayed_as_follows(List<String> expectedText) {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
         wait.until(ExpectedConditions.visibilityOf(arrangeDataTablePage.gridSettingsText));
 
         List<String> actualText = new ArrayList<>();
@@ -42,3 +58,4 @@ public class ArrangeDataTable_StepDefinition {
         Assert.assertEquals(expectedText, actualText);
     }
 }
+
