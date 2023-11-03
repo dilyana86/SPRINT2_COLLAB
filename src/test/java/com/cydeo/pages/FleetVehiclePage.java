@@ -28,4 +28,5 @@ public class FleetVehiclePage {
 
     @FindBy(className = "input-widget")
     public WebElement pageNumber;
+
 }
