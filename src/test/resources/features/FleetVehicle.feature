@@ -54,3 +54,4 @@ Feature: As a user, I should be able to see all vehicle information in a table u
       | driver        |
       | sales manager |
       | store manager |
+
