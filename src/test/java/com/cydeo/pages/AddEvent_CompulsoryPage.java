@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AddEvent_CompulsoryPage {
 
-    public AddEvent_CompulsoryPage(){
+    public AddEvent_CompulsoryPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
@@ -35,6 +35,15 @@ public class AddEvent_CompulsoryPage {
 
     @FindBy(xpath = "//label[@class='required']")
     public List<WebElement> addEventPopupRequiredFields;
+
+    @FindBy(xpath = "//button[@type= 'submit']")
+    public WebElement saveButtonPopup;
+
+    @FindBy(xpath = "//div[.='This value should not be blank.']")
+    public WebElement valueIsNotBlank;
+
+    @FindBy(xpath = "//input[@data-name='field__title']")
+    public WebElement titleField;
 
 
 }

@@ -16,7 +16,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddEvent_CompulsoryField_StepDefs  extends AddEvent_CompulsoryPage{
+public class AddEvent_CompulsoryField_StepDefs extends AddEvent_CompulsoryPage {
 
 
     Actions actions = new Actions(Driver.getDriver());
@@ -47,11 +47,11 @@ public class AddEvent_CompulsoryField_StepDefs  extends AddEvent_CompulsoryPage{
 
     @Then("{string} can click Add Event button, but driver can NOT see Add Event button")
     public void can_click_add_event_button_but_driver_can_not_see_add_event_button(String user) {
-        if (user.equals("sales manager") || user.equals("store manager")){
+        if (user.equals("sales manager") || user.equals("store manager")) {
             Assert.assertTrue(addEventButton.isDisplayed());
         }
 
-        if (user.equals("driver")){
+        if (user.equals("driver")) {
             Assert.assertFalse(addEventButton.isDisplayed());
         }
 
@@ -59,29 +59,43 @@ public class AddEvent_CompulsoryField_StepDefs  extends AddEvent_CompulsoryPage{
 
     @When("{string} can click Add Event button")
     public void can_click_add_event_button(String user) {
-        if (user.equals("sales manager") || user.equals("store manager")){
-           addEventButton.click();
+        if (user.equals("sales manager") || user.equals("store manager")) {
+            addEventButton.click();
         }
     }
+
     @Then("Add Event page should pop up")
     public void add_event_page_should_pop_up() {
-     addEventPopup.isDisplayed();
+        addEventPopup.isDisplayed();
     }
 
     @Then("Compulsory fields are shown as below Compulsory fields are shown as below:")
     public void compulsory_fields_are_shown_as_below_compulsory_fields_are_shown_as_below(List<String> expectedRequiredFields) {
 
         BrowserUtils.sleep(3);
-       List<String>  actualRequiredFields = new ArrayList<>();
+        List<String> actualRequiredFields = new ArrayList<>();
 
         for (WebElement each : addEventPopupRequiredFields) {
-            actualRequiredFields.add(each.getText().replace("*",""));
+            actualRequiredFields.add(each.getText().replace("*", ""));
         }
 
 
         Assert.assertEquals(expectedRequiredFields, actualRequiredFields);
     }
 
+    @Then("if any compulsory field is not filled, {string} message should be displayed after clicking on save button")
+    public void if_any_compulsory_field_is_not_filled_message_should_be_displayed_after_clicking_on_save_button(String expected) {
 
+        saveButtonPopup.click();
+        Assert.assertEquals(expected, valueIsNotBlank.getText());
+
+        BrowserUtils.sleep(3);
+
+        titleField.sendKeys("hello");
+        saveButtonPopup.click();
+        Assert.assertEquals(expected, valueIsNotBlank.getText());
+
+
+    }
 
 }
