@@ -8,12 +8,24 @@ import org.openqa.selenium.support.PageFactory;
 public class FilterTable_Page {
 
 
-    public FilterTable_Page(){PageFactory.initElements(Driver.getDriver(),this);}
+    public FilterTable_Page() {
+        PageFactory.initElements(Driver.getDriver(), this);
+    }
 
 
+    @FindBy(xpath = "//div[@class='actions-panel pull-right form-horizontal']/div/a/i")
+    public WebElement filterIconButton;
 
-  //  @FindBy(id="prependedInput")
-   // public WebElement userName;
+
+    @FindBy(xpath = "//a[@class='add-filter-button']")
+    public WebElement manageFilterButton;
+
+
+    @FindBy(xpath = "//input[@value='Tags']")
+    public WebElement selectFilterButton;     // tags
+
+    @FindBy(xpath = "//input[@type='search']")
+    public WebElement searchBar;
 
 
 
@@ -24,3 +36,4 @@ public class FilterTable_Page {
 
 
 }
+
