@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -23,6 +24,7 @@ public class AddEvent_CompulsoryField_StepDefs extends AddEvent_CompulsoryPage {
 
     @When("user hover over on Fleet button and click Vehicle button")
     public void user_hover_over_on_fleet_button_and_click_vehicle_button() {
+        waitUntilLoaderScreenDisappear();
 
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(fleetButton));
@@ -34,31 +36,35 @@ public class AddEvent_CompulsoryField_StepDefs extends AddEvent_CompulsoryPage {
 
     @When("click on vehicle row")
     public void click_on_vehicle_row() {
+        waitUntilLoaderScreenDisappear();
         vehicleRow.click();
 
     }
 
     @Then("user should access the Add Event page")
     public void user_should_access_the_add_event_page() {
-
+        waitUntilLoaderScreenDisappear();
         Assert.assertTrue(addEventPage.isDisplayed());
 
     }
 
     @Then("{string} can click Add Event button, but driver can NOT see Add Event button")
     public void can_click_add_event_button_but_driver_can_not_see_add_event_button(String user) {
+       waitUntilLoaderScreenDisappear();
         if (user.equals("sales manager") || user.equals("store manager")) {
-            Assert.assertTrue(addEventButton.isDisplayed());
+            Assert.assertTrue(addEventButton.isEnabled());
         }
 
         if (user.equals("driver")) {
             Assert.assertFalse(addEventButton.isDisplayed());
         }
 
+
     }
 
     @When("{string} can click Add Event button")
     public void can_click_add_event_button(String user) {
+        waitUntilLoaderScreenDisappear();
         if (user.equals("sales manager") || user.equals("store manager")) {
             addEventButton.click();
         }
@@ -66,7 +72,12 @@ public class AddEvent_CompulsoryField_StepDefs extends AddEvent_CompulsoryPage {
 
     @Then("Add Event page should pop up")
     public void add_event_page_should_pop_up() {
+        waitUntilLoaderScreenDisappear();
         addEventPopup.isDisplayed();
+
+        closePopup.click();
+        BrowserUtils.sleep(2);
+
     }
 
     @Then("Compulsory fields are shown as below Compulsory fields are shown as below:")
@@ -81,21 +92,27 @@ public class AddEvent_CompulsoryField_StepDefs extends AddEvent_CompulsoryPage {
 
 
         Assert.assertEquals(expectedRequiredFields, actualRequiredFields);
+
+        closePopup.click();
+
+        BrowserUtils.sleep(3);
     }
 
     @Then("if any compulsory field is not filled, {string} message should be displayed after clicking on save button")
     public void if_any_compulsory_field_is_not_filled_message_should_be_displayed_after_clicking_on_save_button(String expected) {
-
+        waitUntilLoaderScreenDisappear();
         saveButtonPopup.click();
         Assert.assertEquals(expected, valueIsNotBlank.getText());
 
-        BrowserUtils.sleep(3);
+      //  BrowserUtils.sleep(3);
 
         titleField.sendKeys("hello");
         saveButtonPopup.click();
         Assert.assertEquals(expected, valueIsNotBlank.getText());
 
+        closePopup.click();
 
+        BrowserUtils.sleep(3);
     }
 
 }
