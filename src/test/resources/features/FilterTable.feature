@@ -14,7 +14,7 @@ Feature: When user clicks on filter icon "Manage filters" should be visible
 
     Examples:
       | userType      |
-      | driver        |
+      | driver     |
      # | sales manager |
       #| store manager |
 
