@@ -7,8 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class FleetVehiclePage {
 
-    public FleetVehiclePage(){
-        PageFactory.initElements(Driver.getDriver(),this);
+    public FleetVehiclePage() {
+        PageFactory.initElements(Driver.getDriver(), this);
     }
 
     @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']")
@@ -28,13 +28,6 @@ public class FleetVehiclePage {
 
     @FindBy(className = "input-widget")
     public WebElement pageNumber;
-
-
-
-
-
-
-
 
 
 }
