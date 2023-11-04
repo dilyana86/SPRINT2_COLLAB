@@ -44,6 +44,16 @@ public class Login_StepDefinitions {
     }
 
 
+    @Then("the user hover over fleet and click on vehicles")
+    public void theUserHoverOverFleetAndClickOnVehicles() {
+
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOf(loginPage.fleetMenu));
+
+        Actions hover = new Actions(Driver.getDriver());
+        hover.moveToElement(loginPage.fleetMenu).perform();
+        loginPage.vehiclesMenu.click();
+    }
 
 
 
