@@ -3,33 +3,34 @@ Feature: As a user, I should be able to use "Last Odometer" filter under 'Fleet-
   Background: User is already in the log in page
     Given the user is on the login page
 
-  @wip
-  Scenario Outline: Verify login with different user types
+  @andy
+  Scenario Outline: Verify "Last Odometer" filter methods
     Given the user logged in as "<userType>"
-    Then the user hover over fleet and click on vehicles
-    Then the user should click on filter icon
-    Then the user should be able to see Manage filters button
-
-
+    Then user navigate to fleet management Page
+    And  the user clicks on filter icon
+    Then  user should be able to see Manage filters button
+    When the user selects from filter as "<filterType>"
+    And the user clicks on filter drop down
+    Then the user should see filter methods as "<methods>"
     Examples:
-      | userType      |
-      | driver        |
-      | sales manager |
-      | store manager |
+      | userType      | filterType      | methods  |
+      | sales manager | Last Odometer   | Between, Not Between, Equals, Not Equals, More Than, Less Than, Equals Or More Than, Equals Or Less Than, Is Empty, Is Not Empty|
+      | store manager | Last Odometer   | Between, Not Between, Equals, Not Equals, More Than, Less Than, Equals Or More Than, Equals Or Less Than, Is Empty, Is Not Empty|
 
-  @lastOdometerFilter
-  Scenario: Verify "Last Odometer" filter methods
-    Given the user is on the 'Fleet-Vehicles' page
-    When the user selects the "Last Odometer" filter
-    Then the user should see the following filter methods:
-      | Method                |
-      | Between               |
-      | Not Between           |
-      | Equals                |
-      | Not Equals            |
-      | More Than             |
-      | Less Than             |
-      | Equals or More Than   |
-      | Equals or Less Than   |
-      | Is Empty              |
-      | Is Not Empty          |
+
+
+  @andy
+  Scenario Outline: When user selects "Between" method with numeric values, the results should be between the specified values
+    Given the user logged in as "<userType>"
+    Then user navigate to fleet management Page
+    And  the user clicks on filter icon
+    Then  user should be able to see Manage filters button
+    When the user selects from filter as "<filterType>"
+    And the user clicks on filter drop down
+    When the user  clicks on a "<methods>"
+    And enters some numeric value as "<value1>"and "<value2>"
+    Then the user should see correct results
+    Examples:
+      | userType      | filterType      | methods  |value1|value2|
+      | sales manager | Last Odometer   | Between| 2000    |7000   |
+      | store manager | Last Odometer   | Between| 2000    |7000   |
