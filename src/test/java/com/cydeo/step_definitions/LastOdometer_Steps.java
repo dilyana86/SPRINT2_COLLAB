@@ -99,8 +99,7 @@ public class LastOdometer_Steps {
             Assert.assertTrue(!(numericValue >= 2000 || numericValue <= 7000));
         } catch (NumberFormatException e) {
             System.out.println("Error: The value is not a valid number.");
-//note: found a bug, when login as sales manager the last odometer value format is wrong =>example: 1.000
-            //expected: last odometer value should be => 1,000
+
         }
     }
 

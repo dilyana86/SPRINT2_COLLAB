@@ -34,3 +34,5 @@ Feature: As a user, I should be able to use "Last Odometer" filter under 'Fleet-
       | userType      | filterType      | methods  |value1|value2|
       | sales manager | Last Odometer   | Between| 2000    |7000   |
       | store manager | Last Odometer   | Between| 2000    |7000   |
+    #//note: found a bug, when login as sales manager the last odometer value format is wrong =>example: 1.000
+    #            //expected: last odometer value should be => 1,000
