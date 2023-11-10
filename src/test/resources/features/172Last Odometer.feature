@@ -14,8 +14,8 @@ Feature: As a user, I should be able to use "Last Odometer" filter under 'Fleet-
     Then the user should see filter methods as "<methods>"
     Examples:
       | userType      | filterType      | methods  |
-      | sales manager | Last Odometer   | Between, not between, equals, not equals, more than, less than, equals or more than, equals or less than, is empty, is not empty|
-      | store manager | Last Odometer   | Between, not between, equals, not equals, more than, less than, equals or more than, equals or less than, is empty, is not empty|
+      | sales manager | Last Odometer   | Between, Not Between, Equals, Not Equals, More Than, Less Than, Equals Or More Than, Equals Or Less Than, Is Empty, Is Not Empty|
+      | store manager | Last Odometer   | Between, Not Between, Equals, Not Equals, More Than, Less Than, Equals Or More Than, Equals Or Less Than, Is Empty, Is Not Empty|
 
 
 
@@ -32,5 +32,5 @@ Feature: As a user, I should be able to use "Last Odometer" filter under 'Fleet-
     Then the user should see correct results
     Examples:
       | userType      | filterType      | methods  |value1|value2|
-      | sales manager | Last Odometer   | between| 1000    |1500   |
-      | store manager | Last Odometer   | between| 1000    |1500   |
+      | sales manager | Last Odometer   | Between| 2000    |7000   |
+      | store manager | Last Odometer   | Between| 2000    |7000   |

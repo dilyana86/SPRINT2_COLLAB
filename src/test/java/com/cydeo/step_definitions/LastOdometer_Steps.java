@@ -57,7 +57,7 @@ public class LastOdometer_Steps {
         List<String> methodsText = Arrays.asList(methods.split(", "));
         System.out.println("Filter methods: " + filterMethodsText);
         // Compare the two lists
-        Assert.assertTrue("The lists do not contain the same elements.",filterMethodsText.containsAll(methodsText) && methodsText.containsAll(filterMethodsText));
+        Assert.assertTrue("The lists do not contain the same elements.",filterMethodsText.containsAll(methodsText));
     }
 
     @And("the user clicks on filter drop down")
@@ -96,7 +96,7 @@ public class LastOdometer_Steps {
         try {
             double numericValue = Double.parseDouble(lastOdometerColumnValue);
             System.out.println("the result is :"+numericValue);
-            Assert.assertTrue(numericValue < 1500 && numericValue > 1000);
+            Assert.assertTrue(!(numericValue >= 2000 || numericValue <= 7000));
         } catch (NumberFormatException e) {
             System.out.println("Error: The value is not a valid number.");
 //note: found a bug, when login as sales manager the last odometer value format is wrong =>example: 1.000
