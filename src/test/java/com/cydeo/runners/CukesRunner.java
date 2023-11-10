@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
             features = "src/test/resources/features",
             glue = "com/cydeo/step_definitions",
             dryRun = false,                   //by default is false, true is only for snippets
-            tags = "@wip",
+            tags = "@andy",
             publish = true
 
     )
